@@ -23,31 +23,37 @@ if __name__ == '__main__':
     out = args.output
 
 
+
+
 try:
     if target:
         
         emailObject = validate_email(target)
-        
+       
         validate_mail = emailObject.email
-        output =(f"{validate_mail}     correct")
+        output =(f"{validate_mail}    ✓")
         print(f"[bold green]{output}")
     else:
         print("Please, insert an email")
         print("Use [-h] to show the help")   
 except EmailNotValidError as errorMsg:
-    #Print a message that tell the email is not valid
-    print(f"[bold red]{str(errorMsg)}")
+    print(f"[bold red]✗ {str(errorMsg)} ✗")
 
 try:
-
+    #if the user choose a wordlist then...
     if wlist:
+        #analyze wordlist
         wordlistline = open(wlist,'r').readlines()
         for i in range(0,len(wordlistline)):
+            #creating an output
             res = wordlistline[i].replace('\n','')
+            #validating the email
             email_object= validate_email(res)
             valid_mail= email_object.email
-            results = (f"{valid_mail}   correct")
+            #print the result
+            results = (f"{valid_mail}   ✓")
             print(f"[bold green]{results}")
+            #if user choose output then save the output into a file text
             if out:                    
                 f = open(out,'a')
                 f.write(results+'\n')
