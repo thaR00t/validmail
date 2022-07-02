@@ -25,10 +25,9 @@ if __name__ == '__main__':
 
 try:
     if target:
-        # Validating the `testEmail`
+        
         emailObject = validate_email(target)
-        # If the `testEmail` is valid
-        # it is updated with its normalized form
+        
         validate_mail = emailObject.email
         output =(f"{validate_mail}     correct")
         print(f"[bold green]{output}")
@@ -36,8 +35,7 @@ try:
         print("Please, insert an email")
         print("Use [-h] to show the help")   
 except EmailNotValidError as errorMsg:
-    # If `testEmail` is not valid
-    # we print a human readable error message
+    #Print a message that tell the email is not valid
     print(f"[bold red]{str(errorMsg)}")
 
 try:
